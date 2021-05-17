@@ -29,9 +29,16 @@ document.querySelector(
 document.querySelector("#Hi").innerHTML = Number(document.querySelector("#Hi").innerHTML);
 
 function showTemperature(response) {
+  console.log(response);
   document.querySelector("#local-city").innerHTML = response.data.name;
   document.querySelector("#Hi").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#weather").innerHTML = response.data.weather[0].description;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
   let otherTwo = response.data.main.humidity;
   let otherThree = Math.round(response.data.wind.speed);
   document.getElementById(
