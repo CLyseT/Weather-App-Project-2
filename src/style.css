@@ -102,6 +102,7 @@ h7 {
   margin: 0 auto;
 }
 
-small {
+.open-source-link {
   text-align: center;
+  margin: 0 auto;
 }
