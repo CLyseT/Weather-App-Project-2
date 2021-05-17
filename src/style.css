@@ -103,5 +103,5 @@ h7 {
 }
 
 .col-md-6 {
-  font-size: 75px;
+  max-width: 75px;
 }
