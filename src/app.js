@@ -46,7 +46,7 @@ function showTemperature(response) {
   let otherFive = new Date(sunrise * 1000);
   let sunset = response.data.sys.sunset;
   let otherSix = new Date(sunset * 1000);
-  let otherSeven = response.data.rain["1h"];
+  let otherSeven = response.data.rain;
   if (otherSeven == undefined) {
     otherSeven = 0;
   } else {
