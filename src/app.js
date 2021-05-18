@@ -41,9 +41,23 @@ function showTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
   let otherTwo = response.data.main.humidity;
   let otherThree = Math.round(response.data.wind.speed);
+  let otherFour = Math.round(response.data.main.temp_min);
+  let sunrise = response.data.sys.sunrise;
+  let otherFive = new Date(sunrise * 1000);
+  let sunset = response.data.sys.sunset;
+  let otherSix = new Date(sunset * 1000);
+  let otherSeven = response.data.rain["1h"];
+  if (otherSeven == undefined) {
+    otherSeven = 0;
+  } else {
+    otherSeven = response.data.rain;
+  }
   document.getElementById(
     "otherWeather"
-  ).innerHTML = `Humidity: ${otherTwo}%<br>Wind: ${otherThree}mph`;
+  ).innerHTML = `Humidity: ${otherTwo}%<br>Wind: ${otherThree}mph<br>Precipitation: ${otherSeven}<br> Temperature Lo: ${otherFour}°`;
+  document.getElementById(
+    "entire-2-1"
+  ).innerHTML = `Sunrise Time: ${otherFive}<br> Sunset Time: ${otherSix}`;
 }
 function showLocation(event) {
   event.preventDefault();

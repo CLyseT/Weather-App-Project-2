@@ -14,6 +14,15 @@
   background: linear-gradient(180.3deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);
 }
 
+#entire-2-1 {
+  background: linear-gradient(180.3deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);
+  color: white;
+}
+
+#weather-map {
+  background: linear-gradient(180.3deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);
+}
+
 h1 {
   text-align: center;
   font-size: 35px;
@@ -104,4 +113,22 @@ h7 {
 
 .open-source-link {
   text-align: center;
+}
+
+#otherWeather {
+  font-size: 12px;
+}
+
+#entire-2-1 {
+  font-size: 14px;
+}
+
+#sunriseInfo {
+  text-align: left;
+  font-size: 20px;
+  font-family: "Noto Serif", serif;
+  color: black;
+  margin-left: -125px;
+  margin-top: 25px;
+  border-radius: 5px;
 }
