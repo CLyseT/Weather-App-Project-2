@@ -28,6 +28,31 @@ document.querySelector(
 
 document.querySelector("#Hi").innerHTML = Number(document.querySelector("#Hi").innerHTML);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecastDay");
+
+  let forecastHTML = `<div class="row align-items-center">`;
+  let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col" id="forecastDay">${day}
+              <img id="icon" src="" width="30" target="_blank" alt=""/>
+              <br>
+              <br> 
+              <div class="forecastTemp" id="forecastNumber">
+              <span id="weatherMax">90 </span id="weatherMin"> | 75
+              </div>
+              </div>
+            
+`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   console.log(response);
   document.querySelector("#local-city").innerHTML = response.data.name;
@@ -58,6 +83,8 @@ function showTemperature(response) {
   document.getElementById(
     "entire-2-1"
   ).innerHTML = `Sunrise Time: ${otherFive}<br> Sunset Time: ${otherSix}`;
+
+  displayForecast();
 }
 function showLocation(event) {
   event.preventDefault();

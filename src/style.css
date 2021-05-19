@@ -132,3 +132,21 @@ h7 {
   margin-top: 25px;
   border-radius: 5px;
 }
+
+#entire-2 {
+  text-align: center;
+  color: white;
+}
+
+#forecastDay {
+  text-align: center;
+  font-size: 16px;
+}
+
+#forecastNumber {
+  font-size: 13px;
+}
+
+#weatherMax {
+  font-weight: bolder;
+}
