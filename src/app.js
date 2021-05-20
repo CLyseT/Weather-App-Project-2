@@ -28,29 +28,56 @@ document.querySelector(
 
 document.querySelector("#Hi").innerHTML = Number(document.querySelector("#Hi").innerHTML);
 
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecastDay");
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecastDay");
   let forecastHTML = `<div class="row align-items-center">`;
-  let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-            <div class="col" id="forecastDay">${day}
-              <img id="icon" src="" width="30" target="_blank" alt=""/>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+            <div class="col" id="forecastDay">${formatDay(forecastDay.dt)}
+              <img id="icon" src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png" width="80" target="_blank" alt=""/>
               <br>
               <br> 
               <div class="forecastTemp" id="forecastNumber">
-              <span id="weatherMax">90 </span id="weatherMin"> | 75
+              <span id="weatherMax"> ${Math.round(
+                forecastDay.temp.max
+              )}° </span id="weatherMin"> | ${Math.round(forecastDay.temp.min)}°
+              <br/>
+              <br/>
+              <br/>
               </div>
               </div>
             
 `;
+    }
   });
+
+  let uv = response.data.current.uvi;
+  document.querySelector("#alerts").innerHTML = `Today's Ultraviolet Index Is ${uv}`;
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "8b6d13edab9cd86a1b37c0fd46031ffb";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);
+
+  displayForecast();
 }
 
 function showTemperature(response) {
@@ -71,21 +98,17 @@ function showTemperature(response) {
   let otherFive = new Date(sunrise * 1000);
   let sunset = response.data.sys.sunset;
   let otherSix = new Date(sunset * 1000);
-  let otherSeven = response.data.rain;
-  if (otherSeven == undefined) {
-    otherSeven = 0;
-  } else {
-    otherSeven = response.data.rain;
-  }
+  let otherSeven = Math.round(response.data.main.feels_like);
   document.getElementById(
     "otherWeather"
-  ).innerHTML = `Humidity: ${otherTwo}%<br>Wind: ${otherThree}mph<br>Precipitation: ${otherSeven}<br> Temperature Lo: ${otherFour}°`;
+  ).innerHTML = `Feels Like: ${otherSeven}°<br>Humidity: ${otherTwo}%<br>Wind: ${otherThree}mph<br> Temperature Lo: ${otherFour}°`;
   document.getElementById(
-    "entire-2-1"
+    "sunrise"
   ).innerHTML = `Sunrise Time: ${otherFive}<br> Sunset Time: ${otherSix}`;
 
-  displayForecast();
+  getForecast(response.data.coord);
 }
+
 function showLocation(event) {
   event.preventDefault();
   document.querySelector("#Hi").innerHTML = Number(document.querySelector("#Hi").innerHTML);
@@ -96,25 +119,3 @@ function showLocation(event) {
 }
 let button = document.querySelector("#city-form");
 button.addEventListener("submit", showLocation);
-
-function convertToCelcius(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector("#Hi");
-  let tempy = tempElement.innerHTML;
-  tempy = Number(tempy);
-  tempElement.innerHTML = Math.round(((tempy - 32) * 5) / 9);
-}
-
-let celciusLink = document.querySelector("#celcius-link");
-celciusLink.addEventListener("click", convertToCelcius);
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector("#Hi");
-  let tempy = tempElement.innerHTML;
-  tempy = Number(tempy);
-  tempElement.innerHTML = Math.round((tempy * 9) / 5 + 32);
-}
-
-let farenheitLink = document.querySelector("#farenheit-link");
-farenheitLink.addEventListener("click", convertToFahrenheit);

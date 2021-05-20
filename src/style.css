@@ -73,6 +73,12 @@ h7 {
   color: white;
 }
 
+h3 {
+  text-align: center;
+  font-family: "Noto Serif", serif;
+  color: black;
+}
+
 .weather {
   font-size: 45px;
   color: black;
@@ -103,7 +109,10 @@ h7 {
 }
 
 .units {
-  font-size: 12px;
+  font-size: 24px;
+  font-weight: bolder;
+  color: black;
+  font-family: "Noto Serif", serif;
 }
 
 .entire {
@@ -149,4 +158,25 @@ h7 {
 
 #weatherMax {
   font-weight: bolder;
+}
+
+#sunrise {
+  text-align: center;
+  font-size: 18px;
+}
+
+.hourlyForecast {
+  font-size: 15px;
+  text-align: center;
+}
+
+#alerts {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+}
+
+#uv {
+  display: block;
+  margin: 0 auto;
 }

@@ -40,16 +40,16 @@
             </div>
             <div class="weather" id="Hi">00</div>
             <span class="units">
-              <a href="#" id="celcius-link"> C°</a> | <a href="#" id="farenheit-link"> F°</a>
+              F°
             </span>
           </div>
           <br />
           <div class="col" id="otherWeather">
+            Feels Like:           
+            <br/>
             Humidity:
             <br />
             Wind:
-            <br/>
-            Precipitation:
             <br/>
             Temperature Lo:
          </div>
@@ -58,25 +58,33 @@
         </div>
         <br />
       </div>
-      <br/>  
+      <div>
+        <br/>
+       
+
+      <div>
       <div class="container border" id="entire-2-1">
-      Sunrise Time: 
+      <h3> Sunrise / Sunset </h3>
       <br/>
-      Sunret Time:
+      <p id="sunrise"> </p>
       <br/>
       </div>
       <br />
       <div class="container border" id="entire-2">
         <div>
+
           <div class="row align-items-center">
-            Weather Forecast
+            <h3>5 Day Forecast</h3>
+            <br/>
+            <br/>
             <div class="col" id="forecastDay">
-              <img id="icon" src="" width="30" target="_blank" alt=""/>
+              <img id="icon" src="" width="" target="_blank" alt=""/>
               <br>
               <br> 
               <div class="forecastTemp" id="forecastNumber">
               <span id="weatherMax"> </span id="weatherMin"> 
               </div>
+              <br/> 
             </div>
             <br />
             <br />
@@ -84,8 +92,24 @@
         </div>
       </div>
       <br />
+   
+      
+      <div class="container border" id="entire-2-1">
+      <h3> Ultraviolet Index </h3>
+      <br/>
+      <img id="uv" src="img/Copy of Untitled.png" width="515" alt="uvScale" />
+      <br/>
+      <br/>
+      <p id="alerts"> 
+      </p>
+      <br/>
+      </div>
+      <br />
+      
+     
       <script src="src/app.js"></script>
-    </div>
+      </div>
+    <br/>
     <p class="open-source-link">
       <a href="https://github.com/CLyseT/Weather-App-Project-2" target="_blank"> Open Source Code</a> by Carlyse Thomas
     </p>
